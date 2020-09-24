@@ -35,4 +35,38 @@ function convertHTML(str) {
   convertHTML("Dolce & Gabbana");
 
   // S2
+  function convertHTML(str) {
+    // Use Object Lookup to declare as many HTML entities as needed.
+    const htmlEntities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&apos;"
+    };
+    // dùng [] trong regex để khớp một trong các ký tự 
+    return str.replace(/([&<>\"'])/g, match => htmlEntities[match]);
+  }
   
+  // test here
+  convertHTML("Dolce & Gabbana");
+
+  // S3
+  function convertHTML(str) {
+    // Use Object Lookup to declare as many HTML entities as needed.
+    const htmlEntities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&apos;"
+    };
+    //Use map function to return a filtered str with all entities changed automatically.
+    return str
+      .split("")
+      .map(entity => htmlEntities[entity] || entity)// nếu không tìm thấy thì giữ nguyên
+      .join("");
+  }
+  
+  // test here
+  convertHTML("Dolce & Gabbana");
