@@ -1,72 +1,20 @@
-// S1
-function convertHTML(str) {
-    // Split by character to avoid problems.
-  
-    var temp = str.split("");// cắt ra thành từng phần tử
-    console.log(temp)
-  
-    // Since we are only checking for a few HTML elements, use a switch
-    // lặp qua từng phần tử và gán lại cho chúng thực thể html nếu có
-    for (var i = 0; i < temp.length; i++) {
-      switch (temp[i]) {
-        case "<":
-          temp[i] = "&lt;";
-          break;
-        case "&":
-          temp[i] = "&amp;";
-          break;
-        case ">":
-          temp[i] = "&gt;";
-          break;
-        case '"':
-          temp[i] = "&quot;";
-          break;
-        case "'":
-          temp[i] = "&apos;";
-          break;
-      }
+
+// C1 cách này tạo ra dãy fibo bằng cách mô tả 2 số liền nhau trong dãy bằng 2 biến và sau đó update giá trị của 2 thằng qua mỗi vòng lặp while 
+function sumFibs(num) {// truyền vào số giới hạn ban đầu
+  var prevNumber = 0;
+  var currNumber = 1;
+  var result = 0;// tổng ban đầu
+  while (currNumber <= num) {
+    if (currNumber % 2 !== 0) {
+      result += currNumber;// tổng chỉ tăng lên với những số lẻ 
     }
-  
-    temp = temp.join("");// sau đó join lại 
-    return temp;
-  }
-  
-  //test here
-  convertHTML("Dolce & Gabbana");
 
-  // S2
-  function convertHTML(str) {
-    // Use Object Lookup to declare as many HTML entities as needed.
-    const htmlEntities = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&apos;"
-    };
-    // dùng [] trong regex để khớp một trong các ký tự 
-    return str.replace(/([&<>\"'])/g, match => htmlEntities[match]);
+    currNumber += prevNumber;// số hiện tại được gán một trị  mới bằng với giá trị hiện tại cộng với giá trị đứng trước nó 
+    prevNumber = currNumber - prevNumber;// sau khi thằng curent được update thì thằng pre cũng được update 
   }
-  
-  // test here
-  convertHTML("Dolce & Gabbana");
 
-  // S3
-  function convertHTML(str) {
-    // Use Object Lookup to declare as many HTML entities as needed.
-    const htmlEntities = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&apos;"
-    };
-    //Use map function to return a filtered str with all entities changed automatically.
-    return str
-      .split("")
-      .map(entity => htmlEntities[entity] || entity)// nếu không tìm thấy thì giữ nguyên
-      .join("");
-  }
-  
-  // test here
-  convertHTML("Dolce & Gabbana");
+  return result;
+}
+
+// test here
+sumFibs(4);
