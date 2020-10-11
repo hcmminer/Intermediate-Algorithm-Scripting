@@ -41,4 +41,3 @@ function sumFibs(num) {
   
   // test here
   sumFibs(4);
-// sửa xem sao nha
